@@ -324,6 +324,10 @@ function createHTML(options = {}) {
                 result: function (html){
                     if (html){
                         exec('insertHTML', html);
+                        var selectedElement = window.getSelection().focusNode.parentNode;
+                        console.log("sel elem: ", selectedElement); 
+                        selectedElement.setAttribute("draggable", 'true');
+                        selectedElement.setAttribute("ondragstart", 'drag(event)');
                         Actions.UPDATE_HEIGHT();
                     }
                 }
