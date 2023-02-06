@@ -111,10 +111,9 @@ function createHTML(options = {}) {
             const res =  document.execCommand(command, false, value);
 
             var selectedElement = document.getElementById(id);
+            console.log("[execImg] res and selectedElement: ", res, selectedElement);
             selectedElement.setAttribute("draggable", 'true');
             selectedElement.setAttribute("ondragstart", 'drag(event)');
-
-            console.log("[execImg] res and selectedElement: ", res, selectedElement,);
             return res;
         };
 
@@ -328,7 +327,7 @@ function createHTML(options = {}) {
                 result: function(url, style) {
                     if (url){
                         const id = "draggable-" + url;
-                        execImg('insertHTML', "<img id=id style='"+ (style || '')+"' src='"+ url +"' />", id);
+                        execImg('insertHTML', "<img id='id' style='"+ (style || '')+"' src='"+ url +"' />", id);
                         Actions.UPDATE_HEIGHT();
                     }
                 }
