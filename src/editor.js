@@ -109,10 +109,10 @@ function createHTML(options = {}) {
         function execImg(command) {
             var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
             const res =  document.execCommand(command, false, value);
-            var selectedElement = window.getSelection().focusNode.parentNode;
+            var selectedElement = window.getSelection().focusNode;
             selectedElement.setAttribute("draggable", 'true');
             selectedElement.setAttribute("ondragstart", 'drag(event)');
-            console.log("[execImg] res and selectedElement: ", res, selectedElement);
+            console.log("[execImg] res and selectedElement: ", res, selectedElement, window.getSelection());
             return res;
         };
 
