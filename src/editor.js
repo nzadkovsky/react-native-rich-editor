@@ -315,7 +315,7 @@ function createHTML(options = {}) {
             image: {
                 result: function(url, style) {
                     if (url){
-                        exec('insertHTML', "<img style='"+ (style || '')+"' src='"+ url +"'/>");
+                        exec('insertHTML', "<img draggable='true' ondragstart='() => console.log('dragging')' style='"+ (style || '')+"' src='"+ url +"'/>");
                         Actions.UPDATE_HEIGHT();
                     }
                 }
