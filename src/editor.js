@@ -106,6 +106,16 @@ function createHTML(options = {}) {
             return document.execCommand(command, false, value);
         };
 
+        function execImg(command) {
+            var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            const res =  document.execCommand(command, false, value);
+            var selectedElement = window.getSelection().focusNode.parentNode;
+            selectedElement.setAttribute("draggable", 'true');
+            selectedElement.setAttribute("ondragstart", 'drag(event)');
+            console.log("[execImg] res and selectedElement: ", res, selectedElement);
+            return res;
+        };
+
         function asyncExec(command){
             var args = Array.prototype.slice.call(arguments);
             setTimeout(function(){
@@ -315,7 +325,7 @@ function createHTML(options = {}) {
             image: {
                 result: function(url, style) {
                     if (url){
-                        exec('insertHTML', "<img draggable='true' ondragstart='"() => console.log('dragging')"' style='"+ (style || '')+"' src='"+ url +"'/>");
+                        execImg('insertHTML', "<img style='"+ (style || '')+"' src='"+ url +"'/>");
                         Actions.UPDATE_HEIGHT();
                     }
                 }
@@ -324,10 +334,6 @@ function createHTML(options = {}) {
                 result: function (html){
                     if (html){
                         exec('insertHTML', html);
-                        var selectedElement = window.getSelection().focusNode.parentNode;
-                        console.log("sel elem: ", selectedElement); 
-                        selectedElement.setAttribute("draggable", 'true');
-                        selectedElement.setAttribute("ondragstart", 'drag(event)');
                         Actions.UPDATE_HEIGHT();
                     }
                 }
