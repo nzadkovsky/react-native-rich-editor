@@ -111,7 +111,7 @@ function createHTML(options = {}) {
             const res =  document.execCommand(command, false, value);
 
             var selectedElement = document.getElementById(id);
-            console.log("[execImg] res and selectedElement: ", res, selectedElement);
+            console.log("[execImg] res and selectedElement: ", res, selectedElement, id, editor, editor.content );
             selectedElement.setAttribute("draggable", 'true');
             selectedElement.setAttribute("ondragstart", 'drag(event)');
             return res;
